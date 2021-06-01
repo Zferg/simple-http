@@ -27,7 +27,7 @@ func StartWebServer() {
 func handleHomepage(w http.ResponseWriter, r *http.Request) {
 	urlPath := r.URL.Path
 	log.Printf("Web request received on url path %s", urlPath)
-	msg := "Hello world"
+	msg := "You did it!"
 	_, err := w.Write([]byte(msg))
 	if err != nil {
 		fmt.Printf("Failed to write response, err: %s", err)
