@@ -2,4 +2,4 @@
 *.env
 *.vagrant
 *.log
-/bin/*
+/codebase/bin/*
