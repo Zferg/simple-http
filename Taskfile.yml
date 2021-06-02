@@ -2,11 +2,9 @@
 
 version: '3'
 
-vars:
-  GREETING: Hello, World!
-
 tasks:
-  default:
+  docker:
+    desc: Build and run the docker image
     cmds:
-      - echo "{{.GREETING}}"
-    silent: true
+      - sudo docker build -t zferg/simple-http .
+      - sudo docker run --rm -p 8080:8080 zferg/simple-http

@@ -20,5 +20,7 @@ COPY --from=builder /bin/simple-syrup /bin/simple-syrup
 # Setting env
 ENV PORT=8080
 
+EXPOSE 8080
+
 # Run command for binary
 ENTRYPOINT ["/bin/simple-syrup"]
