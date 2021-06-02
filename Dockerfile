@@ -1,14 +1,24 @@
-#Baseimage
-FROM golang:1.16.4-alpine3.13
+# Baseimage
+FROM golang:1.16-alpine AS builder
 
-#Copying codebase to container
-COPY /codebase/ /codebase/
+WORKDIR $GOPATH/src/github.com/Zferg/simple-http
 
-#Building the binary
-RUN cd /codebase && go build -v -o /codebase/bin/server /codebase/src/main.go
+# Copying codebase to container
+COPY . .
 
-#Setting env
-ENV PORT=80
+ENV CGO_ENABLED=0
 
-#Run command for binary
-CMD ["sh", "-c", "/codebase/bin/server"]
+# Building the binary
+RUN go build -ldflags="-s -w" -v -o /bin/simple-syrup ./cmd/simple-syrup
+
+##### Runtime image
+
+FROM scratch
+
+COPY --from=builder /bin/simple-syrup /bin/simple-syrup
+
+# Setting env
+ENV PORT=8080
+
+# Run command for binary
+ENTRYPOINT ["/bin/simple-syrup"]
