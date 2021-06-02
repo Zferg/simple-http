@@ -15,7 +15,6 @@ func ServeFiles(w http.ResponseWriter, r *http.Request) {
 
 	// Serve a static asset
 	http.ServeFile(w, r, fmt.Sprintf("/static/%s", vars["filename"]))
-
 	log.Println("Sending the gophers to fetch", vars["filename"])
 
 	// Handle error if no file is found
