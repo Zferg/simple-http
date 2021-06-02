@@ -1,4 +1,4 @@
-# Simple HTTP
+# Simple HTTP 🐓
 
 > Simple http is a very simple http server. That's pretty much it.
 
